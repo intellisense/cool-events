@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+
+# project related
+.idea
+Dockerfile
+docker-compose.yml
