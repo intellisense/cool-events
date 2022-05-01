@@ -108,7 +108,7 @@ export default {
       if (!this.$refs.form.validate()) return;
       this.authenticating = true;
       this.$store.dispatch(Types.actions.LOGIN, { ...this.formData })
-        .then(() => this.$router.push({ name: 'Home' }))
+        .then(() => this.$router.push({ name: 'UpcomingEvents' }))
         .catch((error) => this.syncErrors(error))
         .finally(() => { this.authenticating = false; });
     },

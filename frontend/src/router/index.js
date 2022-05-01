@@ -3,8 +3,10 @@ import Router from 'vue-router';
 import store from '@/store';
 import { Types } from '@/store/modules/auth/types';
 import Login from '../pages/Login';
-import Home from '../pages/Home';
+import MyEvents from '../pages/MyEvents';
+import UpcomingEvents from '../pages/UpcomingEvents';
 import Signup from '../pages/Signup';
+import MainWrapper from '../pages/MainWrapper';
 
 const requireAuthenticated = (to, from, next) => {
   store.dispatch(Types.actions.INITIALIZE)
@@ -21,7 +23,7 @@ const requireUnauthenticated = (to, from, next) => {
   store.dispatch(Types.actions.INITIALIZE)
     .then(() => {
       if (store.getters[Types.getters.IS_AUTHENTICATED]) {
-        next({ name: 'Home' });
+        next({ name: 'UpcomingEvents' });
       } else {
         next();
       }
@@ -40,13 +42,25 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: { name: 'Home' },
+      redirect: { name: 'UpcomingEvents' },
     },
     {
-      path: '/home',
-      name: 'Home',
-      component: Home,
-      beforeEnter: requireAuthenticated,
+      path: '/events',
+      component: MainWrapper,
+      children: [
+        {
+          path: '',
+          component: UpcomingEvents,
+          name: 'UpcomingEvents',
+          beforeEnter: requireAuthenticated,
+        },
+        {
+          path: 'my',
+          component: MyEvents,
+          name: 'MyEvents',
+          beforeEnter: requireAuthenticated,
+        },
+      ],
     },
     {
       path: '/login',

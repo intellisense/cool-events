@@ -87,6 +87,8 @@ export default {
       let menuItems;
       if (this.isAuthenticated) {
         menuItems = [
+          { title: 'Upcoming Events', icon: 'mdi-calendar-multiple', link: { name: 'UpcomingEvents' } },
+          { title: 'My Events', icon: 'mdi-calendar-heart', link: { name: 'MyEvents' } },
           { title: 'Logout', icon: 'mdi-logout', link: { name: 'Logout' } },
         ];
       } else {
