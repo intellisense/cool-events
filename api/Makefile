@@ -39,6 +39,9 @@ resetdb: # Reset the database, run migrations
 	@$(MAKE) -f $(THIS_FILE) flush
 	@$(MAKE) -f $(THIS_FILE) migrate
 
+setup_test_data: # Generates dummy data
+	docker-compose exec api ./manage.py setup_test_data --confirm
+
 lint:
 	@$(MAKE) -f $(THIS_FILE) isort
 	@$(MAKE) -f $(THIS_FILE) flake8

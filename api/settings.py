@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django_filters",
     # Internal
     "apps.users",
+    "apps.events",
 ]
 
 MIDDLEWARE = [
